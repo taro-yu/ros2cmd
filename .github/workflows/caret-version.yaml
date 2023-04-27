@@ -1,1 +1,22 @@
-aaa
+name: caret-version
+
+on:
+  push:
+    tags:
+      - 'v\d\.\d\.\d'
+
+
+jobs:
+  caret-version:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout ros2cmd 
+        uses: actions/checkout@v2
+        with:
+          repository: taro-yu/ros2cmd
+          ref: main
+
+      - name: Get latest tag
+        run: |
+          
