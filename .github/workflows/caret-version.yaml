@@ -17,7 +17,13 @@ jobs:
           latest_tag=$(curl -s https://api.github.com/repos/taro-yu/ros2cmd/tags | jq -r .[0].name)
           echo "Latest Caret tag: $latest_tag"
           echo "::set-output name=latest_tag::$latest_tag"
-            
+      
+      
+      - name: Set up Git
+        run: |
+          git config --global user.email "milktea1621@gmail.com"
+          git config --global user.name "yu-taro-"
+                  
 
       - name: Checkout ros2cmd 
         uses: actions/checkout@v3
