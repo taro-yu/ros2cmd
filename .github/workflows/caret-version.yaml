@@ -3,17 +3,13 @@ name: caret-version
 on:
   push:
     tags:
-      - 'v\d\.\d\.\d'
-    branches:
-      - 'taro-yu/Caret/main'
-      
+      - 'refs/tags/taro-yu/Caret:v\d\.\d\.\d'
     
   
 # on:
 #   repository_dispatch:
 #     types: 
 #       - created
-#     # Caret リポジトリのオーナー名とリポジトリ名を指定する
 #     repo: taro-yu/Caret
 
 
