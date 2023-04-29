@@ -4,8 +4,8 @@ on:
   push:
     tags:
       - 'v\d\.\d\.\d'
-    branches:
-      - taro-yu/Caret
+      branches:
+        - 'taro-yu/Caret'
     
   
 # on:
