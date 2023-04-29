@@ -1,16 +1,15 @@
 name: caret-version
 
-on:
-  push:
-    tags:
-      - 'refs/taro-yu/Caret:v\d\.\d\.\d'
+# on:
+#   push:
+#     tags:
+#       - 'refs/taro-yu/Caret:v\d\.\d\.\d'
     
   
-# on:
-#   repository_dispatch:
-#     types: 
-#       - created
-#     repo: taro-yu/Caret
+on:
+  repository_dispatch:
+    types: [created]
+    repo: taro-yu/Caret
 
 
 jobs:
