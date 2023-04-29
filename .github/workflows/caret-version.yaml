@@ -2,10 +2,11 @@ name: caret-version
 
 on:
   push:
+    branches:
+        - 'taro-yu/Caret'
     tags:
       - 'v\d\.\d\.\d'
-      branches:
-        - 'taro-yu/Caret'
+      
     
   
 # on:
