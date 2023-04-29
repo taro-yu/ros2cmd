@@ -3,7 +3,9 @@ name: caret-version
 on:
   push:
     tags:
-      - 'taro-yu/Caret: v\d\.\d\.\d'
+      - 'v\d\.\d\.\d'
+    repos:
+      - taro-yu/Caret
   
 # on:
 #   repository_dispatch:
