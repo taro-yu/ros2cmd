@@ -3,7 +3,7 @@ name: caret-version
 on:
   push:
     branches:
-        - 'taro-yu/Caret'
+      - 'taro-yu/Caret'
     tags:
       - 'v\d\.\d\.\d'
       
