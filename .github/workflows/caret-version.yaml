@@ -4,8 +4,9 @@ on:
   push:
     tags:
       - 'v\d\.\d\.\d'
-    repos:
-      - taro-yu/Caret
+      branches:
+        - taro-yu/Caret
+    
   
 # on:
 #   repository_dispatch:
