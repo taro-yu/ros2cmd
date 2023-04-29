@@ -5,7 +5,7 @@ on:
     tags:
       - 'v\d\.\d\.\d'
     branches:
-      - 'taro-yu/Caret'
+      - 'taro-yu/Caret/main'
       
     
   
