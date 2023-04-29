@@ -3,7 +3,7 @@ name: caret-version
 on:
   push:
     tags:
-      - 'refs/tags/taro-yu/Caret:v\d\.\d\.\d'
+      - 'refs/taro-yu/Caret:v\d\.\d\.\d'
     
   
 # on:
