@@ -21,8 +21,8 @@ jobs:
       
       - name: Set up Git
         run: |
-          git config --global user.email "milktea1621@gmail.com"
-          git config --global user.name "yu-taro-"
+          git config --global user.email "github-actions@github.com"
+          git config --global user.name "github-actions"
                   
       - name: Checkout ros2caret
         uses: actions/checkout@v3
