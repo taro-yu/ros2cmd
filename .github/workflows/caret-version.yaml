@@ -20,7 +20,7 @@ jobs:
       repository-projects: write
       security-events: write
       statuses: write
-s
+
     runs-on: ubuntu-latest
 
 
