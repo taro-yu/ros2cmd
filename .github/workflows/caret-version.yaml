@@ -31,7 +31,7 @@ jobs:
         id: tag
         run: |
 
-          echo "TAG_NAME=$(curl -s https://api.github.com/repos/${GITHUB_REPOSITORY}/tags | jq -r .[0].name)" >> "$GITHUB_OUTPUT"
+          echo "TAG_NAME=$(curl -s https://api.github.com/repos/taro-yu/ros2cmd/tags | jq -r .[0].name)" >> "$GITHUB_OUTPUT"
           echo "BRANCH_NAME='rc/$TAG_NAME'" >> "$GITHUB_OUTPUT"
           tag=$TAG_NAME
           echo ${tag}
