@@ -27,10 +27,14 @@ jobs:
           git config --global user.name github-actions
           git config --global user.email github-actions@github.com
 
+      - name: Checkout repository1
+        uses: actions/checkout@v3
+        with:
+          repository: ${GITHUB_REPOSITOEY}
+
       - name: get new branch and tag
         id: tag
         run: |
-          cd ${{github.workspace}}
           branch_name=$(git branch --list 'rc/v*' --sort=committerdate)
           echo "BRANCH_NAME="${branch_name// /}" >> "$GITHUB_OUTPUT"
           echo "TAG_NAME=${BRANCH_NAME#rc/}" >> "$GITHUB_OUTPUT"
@@ -38,7 +42,7 @@ jobs:
           
           
 
-      - name: Checkout repository
+      - name: Checkout repository2
         uses: actions/checkout@v3
         with:
           ref: ${{steps.tag.outputs.BRANCH_NAME}}
