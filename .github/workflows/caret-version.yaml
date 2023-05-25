@@ -45,7 +45,7 @@ jobs:
             fi
             echo "BRANCH_NAME=$max_version_branch" >> "$GITHUB_OUTPUT"
           done
-          bra=$(git branch --list 'rc/v*' --sort=committerdate)
+      
 
       - name: Checkout repository2
         uses: actions/checkout@v3
