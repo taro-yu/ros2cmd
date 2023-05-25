@@ -33,7 +33,7 @@ jobs:
           tag=$(curl -s https://api.github.com/repos/${GITHUB_REPOSITORY}/tags | jq -r .[0].name)
           branches=$(curl -s "https://api.github.com/repos/${GITHUB_REPOSITORY}/branches" | jq -r '.[].name')
           echo "TAG_NAME=$tag" >> "$GITHUB_OUTPUT"
-          
+
           max_version=""
           for branch in $branches; do
             if [[ $branch == rc/v* ]]; then
@@ -45,6 +45,7 @@ jobs:
             fi
             echo "BRANCH_NAME=$max_version_branch" >> "$GITHUB_OUTPUT"
           done
+          bra=$(git branch --list 'rc/v*' --sort=committerdate)
 
       - name: Checkout repository2
         uses: actions/checkout@v3
