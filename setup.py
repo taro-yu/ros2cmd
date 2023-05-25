@@ -4,7 +4,7 @@ package_name = 'ros2caret'
 
 setup(
     name=package_name,
-    version='v8.0.4',
+    version='v8.5.5',
     packages=[package_name],
     data_files=[
         ('share/ament_index/resource_index/packages',
