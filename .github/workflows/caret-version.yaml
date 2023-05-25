@@ -35,7 +35,8 @@ jobs:
             if [[ $branch == "rc/v"* ]]; then
               echo "BRANCH_NAME=$branch" >> "$GITHUB_OUTPUT"
               echo "TAG_NAME=${BRANCH_NAME#rc/}" >> "$GITHUB_OUTPUT"
-              echo $branch
+              echo $BRANCH_NAME
+              echo $TAG_NAME
               break
             fi
           done
