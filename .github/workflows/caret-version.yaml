@@ -45,7 +45,7 @@ jobs:
           sed -i "s/version=.*/version='${{ steps.tag.outputs.TAG_NAME }}'/" setup.py
           git add setup.py
           git commit -m "chore: update version to ${{ steps.tag.outputs.TAG_NAME }}" -s
-          git push 
+          git push origin ${{steps.tag.outputs.BRANCH_NAME}}
 
       - name: Create PR to main branch
         uses: peter-evans/create-pull-request@v3
