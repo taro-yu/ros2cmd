@@ -44,7 +44,7 @@ jobs:
                 max_version_branch=$branch
               fi
             fi
-            echo "BRANCH_NAME=$branch" >> "$GITHUB_OUTPUT"
+            echo "BRANCH_NAME=$max_version_branch" >> "$GITHUB_OUTPUT"
           done
 
       - name: Checkout repository2
