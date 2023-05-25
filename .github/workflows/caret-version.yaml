@@ -30,12 +30,12 @@ jobs:
       - name: get new branch and tag
         id: tag
         run: |
-          tag="rc/v5.0.0"
+
           echo "TAG_NAME=$(curl -s https://api.github.com/repos/${GITHUB_REPOSITORY}/tags | jq -r .[0].name)" >> "GITHUB_OUTPUT"
           echo "BRANCH_NAME='rc/$TAG_NAME'" >> "GITHUB_OUTPUT"
-          echo ${{steps.tag.outputs.TAG_NAME}}
-          echo ${BRANCH_NAME}
+          tag=TAG_NAME
           echo ${tag}
+          
 
       - name: Checkout repository
         uses: actions/checkout@v3
