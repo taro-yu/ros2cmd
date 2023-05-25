@@ -33,10 +33,18 @@ jobs:
           tag=$(curl -s https://api.github.com/repos/${GITHUB_REPOSITORY}/tags | jq -r .[0].name)
           branches=$(curl -s "https://api.github.com/repos/${GITHUB_REPOSITORY}/branches" | jq -r '.[].name')
           echo "TAG_NAME=$tag" >> "$GITHUB_OUTPUT"
-          for branch in $branches; do
-            if [[ $branch == "rc/v"* ]]; then
-              echo "BRANCH_NAME=$branch" >> "$GITHUB_OUTPUT"
-              break
+
+          max_version=""
+
+          for branch in "${branches[@]}"; do
+            if [[ $branch == rc/v* ]]; then
+              version=$(echo $branch | sed -E 's/rc\/v([0-9]+\.[0-9]+\.[0-9]+)/\1/')
+              if [[ -z $max_version || $version > $max_version ]]; then
+                max_version=$version
+                max_version_branch=$branch
+              fi
+            fi
+            echo "BRANCH_NAME=$branch" >> "$GITHUB_OUTPUT"
           done
 
       - name: Checkout repository2
