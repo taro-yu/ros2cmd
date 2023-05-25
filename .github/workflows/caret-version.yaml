@@ -35,8 +35,8 @@ jobs:
           echo "TAG_NAME=${BRANCH_NAME#rc/}" >> "GITHUB_OUTPUT"
           echo "BRANCH_NAME=${BRANCH_NAME}" >> $GITHUB_ENV
           echo "TAG_NAME=${TAG_NAME}" >> $GITHUB_ENV
-          echo $BRANCH_NAME
-          echo $TAG_NAME
+          echo ${BRANCH_NAME}
+          echo ${TAG_NAME}
 
       - name: Checkout repository
         uses: actions/checkout@v3
