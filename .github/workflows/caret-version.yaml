@@ -38,14 +38,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
-          ref: ${{steps.tag.outputs.BRACH_NAME}}
+          ref: ${{steps.tag.outputs.BRNCH_NAME}}
         
       - name: Commit and push changes
         run: |
           sed -i "s/version=.*/version='${{ steps.tag.outputs.TAG_NAME }}'/" setup.py
           git add setup.py
           git commit -m "chore: update version to ${{ steps.tag.outputs.TAG_NAME }}" -s
-          git push origin ${{steps.tag.outputs.BRANCH_NAME}}
+          git push 
 
       - name: Create PR to main branch
         uses: peter-evans/create-pull-request@v3
