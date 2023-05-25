@@ -30,14 +30,13 @@ jobs:
       - name: Get First rc/v Branch
         id: tag
         run: |
-          branches=$(curl -s "https://api.github.com/repos/${GITHUB_REPOSITORY}/branches" | jq -r '.[].name')
           tag=$(curl -s https://api.github.com/repos/${GITHUB_REPOSITORY}/tags | jq -r .[0].name)
+          branches=$(curl -s "https://api.github.com/repos/${GITHUB_REPOSITORY}/branches" | jq -r '.[].name')
           echo "TAG_NAME=$tag" >> "$GITHUB_OUTPUT"
           for branch in $branches; do
             if [[ $branch == "rc/v"* ]]; then
               echo "BRANCH_NAME=$branch" >> "$GITHUB_OUTPUT"
               break
-            fi
           done
 
       - name: Checkout repository2
