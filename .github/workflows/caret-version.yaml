@@ -22,6 +22,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
+      - name: Set up Git
+        run: |
+          git config --global user.name github-actions
+          git config --global user.email github-actions@github.com
+
       - name: get new branch and tag
         id: tag
         run: |
@@ -37,11 +42,6 @@ jobs:
         with:
           ref: ${{ steps.tag.outputs.BRANCH_NAME }}
         
-      - name: Set up Git
-        run: |
-          git config --global user.name github-actions
-          git config --global user.email github-actions@github.com
-
       - name: Commit and push changes
         run: |
           sed -i "s/version=.*/version='${{ steps.tag.outputs.TAG_NAME }}'/" setup.py
