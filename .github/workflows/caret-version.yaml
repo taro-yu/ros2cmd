@@ -30,6 +30,7 @@ jobs:
       - name: get new branch and tag
         id: tag
         run: |
+          cd ${{github.workspace}}
           branch_name=$(git branch --list 'rc/v*' --sort=committerdate)
           echo "BRANCH_NAME="${branch_name// /}" >> "$GITHUB_OUTPUT"
           echo "TAG_NAME=${BRANCH_NAME#rc/}" >> "$GITHUB_OUTPUT"
