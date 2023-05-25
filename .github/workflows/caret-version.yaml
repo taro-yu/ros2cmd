@@ -34,9 +34,6 @@ jobs:
           for branch in $branches; do
             if [[ $branch == "rc/v"* ]]; then
               echo "BRANCH_NAME=$branch" >> "$GITHUB_OUTPUT"
-              echo "TAG_NAME='${BRANCH_NAME#rc/}'" >> "$GITHUB_OUTPUT"
-              echo $BRANCH_NAME
-              echo $TAG_NAME
               break
             fi
           done
@@ -59,7 +56,8 @@ jobs:
         
       - name: Commit and push changes
         run: |
-          sed -i "s/version=.*/version='${{ steps.tag.outputs.TAG_NAME }}',/" setup.py
+          tag="${${{steps.tag.outputs.BRANCH_NAME}}#rc/}"
+          sed -i "s/version=.*/version='$tag',/" setup.py
           git add setup.py
           git commit -m "chore: update version to ${{ steps.tag.outputs.TAG_NAME }}" -s
           git push origin ${{steps.tag.outputs.BRANCH_NAME}}
