@@ -30,6 +30,8 @@ jobs:
         run: |
           echo "BRANCH_NAME=$(git branch --list 'rc/*' --sort=committerdate)" >> "GITHUB_OUTPUT"
           echo "TAG_NAME=${BRANCH_NAME#rc/}" >> "GITHUB_OUTPUT"
+          echo $BRANCH_NAME
+          echo $TAG_NAME
 
       - name: Checkout repository
         uses: actions/checkout@v3
