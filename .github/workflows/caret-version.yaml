@@ -45,7 +45,7 @@ jobs:
           git push origin ${{steps.tag.outputs.BRANCH_NAME}}
 
       - name: Create PR to main branch
-        uses: peter-evans/create-pull-request@v3
+        uses: peter-evans/create-pull-request@v5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           branch: rc/${{ steps.tag.outputs.BRANCH_NAME }}
