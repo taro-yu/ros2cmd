@@ -63,6 +63,7 @@ jobs:
         run: |
           gh pr create -t "chore: update version to ${{ steps.tag.outputs.TAG_NAME }}" \
                        -b "This pull request updates the version in setup.py to ${{ steps.tag.outputs.TAG_NAME }}" \
-                       --base main --head rc/${{ steps.tag.outputs.BRANCH_NAME }}
+                       --base main \
+                       --head ${{ steps.tag.outputs.BRANCH_NAME }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
