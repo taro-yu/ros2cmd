@@ -21,17 +21,17 @@ jobs:
 
     runs-on: ubuntu-latest
     steps:
-
       - name: Set up Git
         run: |
           git config --global user.name github-actions
           git config --global user.email github-actions@github.com
 
-      - name: Get New rc/v Branch
+      - name: Get New Branch and Tag
         id: tag
         run: |
           tag=$(curl -s https://api.github.com/repos/${GITHUB_REPOSITORY}/tags | jq -r .[0].name)
           branches=$(curl -s "https://api.github.com/repos/${GITHUB_REPOSITORY}/branches" | jq -r '.[].name')
+
           echo "TAG_NAME=$tag" >> "$GITHUB_OUTPUT"
 
           max_version=""
@@ -43,26 +43,25 @@ jobs:
                 max_version_branch=$branch
               fi
             fi
-            echo "BRANCH_NAME=$max_version_branch" >> "$GITHUB_OUTPUT"
           done
-      
+          echo "BRANCH_NAME=$max_version_branch" >> "$GITHUB_OUTPUT"
 
       - name: Checkout repository2
         uses: actions/checkout@v3
         with:
           ref: ${{steps.tag.outputs.BRANCH_NAME}}
-        
+
       - name: Commit and push changes
         run: |
-          sed -i "s/version=.*/version='${{steps.tag.outputs.TAG_NAME}}',/" setup.py
-          git add setup.py
+          sed -i "s/__version__ =.*/__version__ = '${{steps.tag.outputs.TAG_NAME}}'/" ros2caret/__version__.py
+          git add ros2caret/__version__.py
           git commit -m "chore: update version to ${{ steps.tag.outputs.TAG_NAME }}" -s
           git push origin ${{steps.tag.outputs.BRANCH_NAME}}
 
       - name: Create PR to main branch
         run: |
-          gh pr create -t "chore: update version to ${{ steps.tag.outputs.TAG_NAME }}" \
-                       -b "This pull request updates the version in setup.py to ${{ steps.tag.outputs.TAG_NAME }}" \
+          gh pr create --title "chore: update version to ${{ steps.tag.outputs.TAG_NAME }}" \
+                       --body "This pull request updates the version in __version__.py to ${{ steps.tag.outputs.TAG_NAME }}" \
                        --base main \
                        --head ${{ steps.tag.outputs.BRANCH_NAME }}
         env:
